@@ -3,12 +3,14 @@ clear;
 
 %Definição de parâmetros
 SNR = -3:1:10;
-M = 4;     %Tamanho da constelação
+M = 16;     %Tamanho da constelação
 k = log2(M);    %Número de bits por símbolo 
 
 %ETAPA 1:
 %Gere uma fonte de informação g que produz 10?7 bits 1s e 0s com igual probabilidade.
 g = randi([0,1],10^7,1);
+
+Eb = sumsqr(g)/length(g)
 
 %Exemplo da amostra
 %stem(g(1:20), 'filled');
@@ -30,6 +32,12 @@ ylabel('Valor inteiro');
 xlabel('Amostra');
 
 %ETAPA 3:
-%Gere um vetor de amostras de um processo ruidoso gaussiano branco.
-ruido = awgn(gInt, SNR(1));
+%Faça a modulação 16-QAM
+gQAM = qammod(gInt,M,'bin');
+
+%ETAPA 4
+%Em seguida, gere o vetor de amostras do sinal ruidoso y, 
+%após transmissão por um canal AWGN, variando a relação SNR 
+%para valores entre -3 dB e 10 dB.
+
 
