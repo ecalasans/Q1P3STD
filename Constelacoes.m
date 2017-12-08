@@ -69,7 +69,8 @@ for m = 1:length(M)
         scatFig = scatterplot(transmSin, 1,0,'g.');
         hold on
         scatterplot(modSin, 1, 0, 'k*', scatFig)
-        tit = strcat(num2str(M(m)), '-QAM')
+        tit = strcat(num2str(M(m)), '-QAM') 
+        legend('Bits transmitidos', 'Modulação')
         title(tit)
         
 end
